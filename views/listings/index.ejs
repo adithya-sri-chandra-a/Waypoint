@@ -1,0 +1,258 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <!-- <h3>All Listings</h3> -->
+    <!-- <form method = "GET" action="/listings/new">
+        <button>Create New Listing</button>
+    </form> -->
+    <style>
+        #filters{
+            margin-top: 1rem;
+            display: flex;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            padding-bottom: 0.5rem;
+            gap: 2rem;
+            scrollbar-width: none;
+        }
+        #filters::-webkit-scrollbar{
+            height: 6px;
+        }
+        #filters::-webkit-scrollbar-thumb{
+            background-color: #ddd;
+            border-radius: 10px;
+        }
+        .filter{
+            text-align : center;
+            color: #2c2727;
+            margin-right: 2rem;
+            opacity: 0.7;
+            min-width: 80px;
+            flex: 0 0 auto;
+            transition : 0.3s ease-in-out;
+        }
+        .filter:hover{
+            opacity: 1;
+            cursor: pointer;
+            transform:scale(1.1);
+            color:#ff385c;
+        }
+        .filter p{
+            font-size: 0.8rem;
+        }
+        .filter a{
+            color: inherit;
+            text-decoration: none !important;
+        }
+        .no-results-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 4rem;        /* pushes it down from top */
+            margin-bottom: 4rem;     /* spacing before footer */
+
+            text-align: center;
+        }
+
+        .no-results-logo {
+            font-size: 4rem;
+            color: #ff385c;
+            margin-bottom: 1rem;
+        }
+
+        .no-results-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .no-results-text {
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        .no-results-sub {
+            color: #777;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-airbnb {
+            background-color: #ff385c;
+            color: white;
+            border-radius: 10px;
+            padding: 0.6rem 1.4rem;
+            font-weight: bold;
+            border: none;
+        }
+
+        .btn-airbnb:hover {
+            background-color: #e21d47;
+            color: white;
+        }
+    </style>
+    <style>
+
+.no-results-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    margin-top: -1rem; /* reduce space under navbar */
+}
+
+.no-results-container {
+    text-align: center;
+}
+
+.no-results-logo {
+    font-size: 4rem;
+    color: #ff385c;
+    margin-bottom: 0.5rem;
+}
+
+.no-results-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+.no-results-text {
+    font-size: 1.2rem;
+    color: #444;
+}
+
+.no-results-sub {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.2rem;
+}
+
+.btn-airbnb {
+    background-color: #ff385c;
+    color: white;
+    border-radius: 12px;
+    padding: 0.6rem 1.4rem;
+    font-weight: bold;
+    border: none;
+}
+
+.btn-airbnb:hover {
+    background-color: #e21d47;
+    color: white;
+}
+
+</style>
+    <div id="filters">
+        <div class="filter">
+            <a class="filter <%= category === 'trending' ? 'active-filter' : '' %>" href="/listings?category=trending">
+            <div><i class="fa-solid fa-fire"></i></div>
+            <p>Trending</p>
+            </a>
+        </div>
+        <div class="filter">
+            <a class="filter <%= category === 'room' ? 'active-filter' : ''%>" href="/listings?category=room">
+            <div><i class="fa-solid fa-bed"></i></div>
+            <p>Room</p>
+            </a>
+        </div>
+        <div class="filter">
+            <a class="filter <%= category === 'iconic_cities' ? 'active-filter' : ''%>" href="/listings?category=iconic_cities">
+            <div><i class="fa-solid fa-fire"></i></div>
+            <p>Iconic Cities</p>
+            </a>
+        </div>
+        <div class="filter">
+            <a class="filter <%= category === 'mountain_cities' ? 'active-filter' : ''%>" href="/listings?category=mountain_cities">
+            <div><i class="fa-solid fa-mountain-city"></i></div>
+            <p>Mountain cities</p>
+            </a>
+        </div>
+        <div class="filter">
+             <a class="filter <%= category === 'mountains' ? 'active-filter' : '' %>" href="/listings?category=mountains">
+            <div><i class="fa-solid fa-mountain"></i></div>
+            <p>Mountains</p>
+            </a>
+        </div>
+        <div class="filter">
+             <a class="filter <%= category === 'castles' ? 'active-filter' : ''%>" href="/listings?category=castles">
+            <div><i class="fa-brands fa-fort-awesome"></i></div>
+            <p>Castles</p>
+            </a>
+        </div>
+        <div class="filter">
+             <a class="filter <%= category === 'amazing_pools' ? 'active-filter' : ''%>" href="/listings?category=amazing_pools">
+            <div><i class="fa-solid fa-person-swimming"></i></div>
+            <p>Amazing  Pools</p>
+            </a>    
+        </div>
+        <div class="filter">
+             <a class="filter <%= category === 'campaing' ? 'active-filter' :'' %>" href="/listings?category=campaing">
+            <div><i class="fa-solid fa-campground"></i></div>
+            <p>Campaing</p>
+            </a>
+        </div>
+        <div class="filter">
+             <a class="filter <%= category === 'farms' ? 'active-filter' :'' %>" href="/listings?category=farms">
+            <div><i class="fa-solid fa-cow"></i></div>
+            <p>Farms</p>
+            </a>
+        </div>
+        <div class="filter">
+             <a class="filter <%= category === 'arctic' ? 'active-filter' :'' %>" href="/listings?category=arctic">
+            <div><i class="fa-regular fa-snowflake"></i></div>
+            <p>Arctic</p>
+            </a>
+        </div>
+        <!-- <div class="tax-toggle">
+            <div class="form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexswitchCheckDefault">
+                <label class="form-check-label" for="switchCheckDefault">Display total after Taxes</label>
+            </div>
+        </div> -->
+    </div>
+
+    
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+        <% if (allListings.length === 0) { %>
+            <div class="no-results-wrapper">
+                <div class="no-results-container">
+
+                    <i class="fa-solid fa-location-arrow no-results-logo"></i>
+
+                    <h2 class="no-results-title">WayPoint</h2>
+
+                    <p class="no-results-text">No such destinations found</p>
+
+                    <p class="no-results-sub">Try selecting another category or explore all listings.</p>
+
+                    <a href="/listings" class="btn btn-airbnb">Show All Listings</a>
+
+                </div>
+            </div>
+        <% } %>
+        <% for (let listing of allListings){%>
+            <a href="/listings/<%= listing._id %>" class="listing-link">
+                <div class=" card listing-card cols">
+                    <img src="<%=listing.image.url%>" class="card-img-top" alt="listing_image"  style="height:15rem"/>
+                    <div class="card-img-overlay"></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b><%= listing.title %><br></b>
+                            &#8377; <%= listing.price.toLocaleString("en-IN") %> /night<br>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        <%}%>
+    </div>
+    <!-- <ul>
+        <% for (let listing of allListings){%>
+        <li><a href="/listings/<%= listing._id %>"><%= listing.title %></a></li>
+        <%}%>
+    </ul> -->
+
+</body>
+
+

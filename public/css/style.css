@@ -1,0 +1,141 @@
+body {
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container{
+    flex:1;
+}
+
+/* Nav Bar */
+.navbar{
+    height :5rem;
+    background-color: white;
+}
+
+.fa-location-arrow{
+    color : #fe424d;
+    font-size: 2rem;
+}
+
+.nav-link{
+    color: #222222 !important;
+}
+
+.footer-info-links a {
+    text-decoration: none;
+    color: #222222;
+}
+
+.footer-info-links a:hover {
+    text-decoration: underline;
+}
+
+.footer-info-links ,
+.footer-info-socials,
+.fa-brands{
+    width: 100%;
+    display :flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .footer-info-socials{
+    width : 100%;
+   
+} */
+
+.footer-info-socials i{
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.footer-info{
+    text-align: center;
+    height : 8rem;
+    background-color: #ebebeb;
+    display: flex;
+    flex-wrap : wrap;
+    justify-content: center;
+    align-items: space-evenly;
+}
+
+/* Cards */
+.listing-card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width :100% !important;
+    object-fit: cover !important;
+}
+
+.card-body{
+    padding: 0% !important;
+}
+
+.card-text p{
+    font-weight: 400 !important;
+}
+
+.listing-link{
+    text-decoration: none;
+}
+
+/* Card Effect */
+.card-img-overlay{
+    opacity: 0;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+
+.add-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+.edit-btn{
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+/* show image */
+.show-img{
+    height : 30vh;
+}
+
+.btns{
+    display: flex;
+}
+
+.show-card{
+    padding-left:0;
+    padding-right: 0;
+}
+
+/* Background for collapsed navbar menu */
+.navbar-collapse {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+/* improve spacing on mobile */
+.navbar-nav .nav-link {
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .navbar-collapse {
+        margin-top: 0.5rem;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+}
