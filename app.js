@@ -97,6 +97,8 @@ app.use((req,res,next) => {
 // });
 
 //const MONGO_URL = "mongodb://127.0.0.1:27017/waypoint";
+
+console.log("DBURL: ", process.env.ATLASDB_URL);
 app.get("/", (req,res)=>{
     res.redirect("/listings");
 });
