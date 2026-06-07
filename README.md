@@ -1,5 +1,8 @@
 Waypoint – Property Listing & Discovery Platform
 
+LIVE LINK OF WAYPOINT
+https://waypoint-1miw.onrender.com
+
 Waypoint is a full-stack web application that allows users to discover, list, and manage rental properties across different destinations. The platform provides a smooth and secure experience for both property owners and travelers, with powerful filtering, search, and management features.
 
 
